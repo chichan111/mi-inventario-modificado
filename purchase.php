@@ -10,6 +10,14 @@ $inventory->checkLogin();
 <script src="js/jquery.dataTables.min.js"></script>
 <script src="js/dataTables.bootstrap.min.js"></script>
 <link rel="stylesheet" href="css/dataTables.bootstrap.min.css" />
+<!-- Select2 -->
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<link href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<!-- SweetAlert2 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.all.min.js"></script>
+
 <script src="js/purchase.js"></script>
 <script src="js/common.js"></script>
 <?php include('inc/container.php'); ?>
@@ -62,31 +70,26 @@ $inventory->checkLogin();
                     <form method="post" id="purchaseForm">
                         <input type="hidden" name="purchase_id" id="purchase_id" />
                         <input type="hidden" name="btn_action" id="btn_action" />
-                        <div class="form-group">
+                        <input type="hidden" name="supplierid" id="supplierid" value="1" />
+                        <div class="mb-3">
                             <label>Nombre de Producto</label>
-                            <select name="product" id="product" class="form-select rounded-0" required>
-                                <option value="">Selecciona Producto</option>
+                            <select name="product" id="product" class="form-select select2 rounded-0" required style="width: 100%">
+                                <option value="">Buscar Producto...</option>
                                 <?php echo $inventory->productDropdownList(); ?>
                             </select>
                         </div>
-                        <div class="form-group">
-                            <label>Cantidad de Producto</label>
+                        <div class="mb-3">
+                            <label>Cantidad</label>
                             <div class="input-group">
-                                <input type="text" name="quantity" id="quantity" class="form-control rounded-0" required pattern="[+-]?([0-9]*[.])?[0-9]+" />
+                                <input type="number" name="quantity" id="quantity" class="form-control rounded-0" required min="1"/>
+                                <span class="input-group-text" id="unit-text">unidades</span>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label>Proveedor</label>
-                            <select name="supplierid" id="supplierid" class="form-select rounded-0" required>
-                                <option value="">Selecciona Proveedor</option>
-                                <?php echo $inventory->supplierDropdownList(); ?>
-                            </select>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <input type="submit" name="action" id="action" class="btn btn-primary btn-sm rounded-0" value="Agregar" form="purchaseForm" />
-                    <button type="button" class="btn btn-default border btn-sm rounded-0" data-bs-dismiss="modal">Cerrar</button>
+                    <input type="submit" name="action" id="action" class="btn btn-primary rounded-0" value="Agregar" form="purchaseForm" />
+                    <button type="button" class="btn btn-default border rounded-0" data-bs-dismiss="modal">Cerrar</button>
                 </div>
             </div>
         </div>

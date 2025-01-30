@@ -1,9 +1,11 @@
+/* Estilos base */
 html,
 body {
     height: 100% !important;
     width: 100% !important;
 }
 
+/* Estilos del footer */
 .footer {
     position: absolute;
     bottom: 0;
@@ -11,4 +13,142 @@ body {
     height: 60px;
     background-color: #f5f5f5;
     padding-top: 15px;
+}
+
+/* Estilos para el menú de navegación */
+.navbar-nav .nav-link {
+    color: black !important;
+    font-weight: bold !important;
+}
+
+/* Estilo para el menú activo */
+.navbar-nav .nav-item .nav-link.active {
+    background-color: #007bff !important;
+    color: white !important;
+    border-radius: 5px;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+}
+
+/* Estilos para badges */
+.badge {
+    font-size: 0.9em;
+    padding: 0.5em 1em;
+    font-weight: 500;
+}
+
+.bg-orange {
+    color: white;
+}
+
+/* Estilos para el contenedor de fechas */
+.date-container {
+    padding: 8px;
+    border-radius: 6px;
+    min-width: 120px;
+    display: inline-block;
+    text-align: center;
+}
+
+.date-container .date {
+    font-size: 1.1em;
+    font-weight: 500;
+    color: white;
+    margin-bottom: 4px;
+}
+
+.date-container .status {
+    font-weight: 500;
+    color: white;
+    font-size: 0.9em;
+}
+
+/* Estados de las fechas */
+.date-ok {
+    background-color: #28a745;
+    color: white;
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+.date-warning {
+    background-color: #fd7e14;
+    color: white;
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+.date-expired {
+    background-color: #dc3545;
+    color: white;
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+/* Estados de Stock */
+.stock-status-container {
+    text-align: center;
+}
+
+.stock-status {
+    padding: 6px 12px;
+    border-radius: 4px;
+    display: inline-block;
+    font-weight: 500;
+    font-size: 0.9em;
+}
+
+/* Colores para badges */
+.badge.bg-success {
+    background-color: #28a745 !important;
+    color: white;
+}
+
+.badge.bg-warning {
+    background-color: #ffc107 !important;
+    color: #000;
+}
+
+.badge.bg-orange {
+    background-color: #fd7e14 !important;
+    color: white;
+}
+
+.badge.bg-danger {
+    background-color: #dc3545 !important;
+    color: white;
+}
+
+/* Estilos para la tabla */
+.table {
+    vertical-align: middle;
+}
+
+.table td {
+    vertical-align: middle;
+}
+
+/* Estilos para botones en la tabla */
+.btn-group-sm > .btn {
+    padding: .25rem .5rem;
+    font-size: .875rem;
+    border-radius: 0;
+}
+
+.btn-group-sm > .btn i {
+    font-size: 0.9em;
+}
+
+/* Estilos para los modales */
+.modal-header {
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.modal-footer {
+    background-color: #f8f9fa;
+    border-top: 1px solid #dee2e6;
+}
+
+/* Estilos para inputs y selects */
+.form-control,
+.form-select {
+    border-radius: 0;
 }

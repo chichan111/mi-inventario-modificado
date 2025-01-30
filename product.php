@@ -10,6 +10,9 @@ $inventory->checkLogin();
 <script src="js/jquery.dataTables.min.js"></script>
 <script src="js/dataTables.bootstrap.min.js"></script>
 <link rel="stylesheet" href="css/dataTables.bootstrap.min.css" />
+<!-- SweetAlert2 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.all.min.js"></script>
 <script src="js/product.js"></script>
 <script src="js/common.js"></script>
 <?php include('inc/container.php'); ?>
@@ -33,21 +36,23 @@ $inventory->checkLogin();
                 <div class="card-body">
                     <div class="row">
                         <div class="col-sm-12 table-responsive">
-                            <table id="productList" class="table table-bordered table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Categoría</th>
-                                        <th>Nombre de Marca</th>
-                                        <th>Nombre de Producto</th>
-                                        <th>Modeo de Producto</th>
-                                        <th>Cantidad</th>
-                                        <th>Nombre de Proveedor</th>
-                                        <th>Estado</th>
-                                        <th>Acción</th>
-                                    </tr>
-                                </thead>
-                            </table>
+                        <table id="productList" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nombre</th>
+                                    <th>Lote</th>
+                                    <th>Fórmula</th>
+                                    <th>Marca</th>
+                                    <th>Categoría</th>
+                                    <th>Cantidad</th>
+                                    <th>Unidad</th>
+                                    <th class="text-center">Estado Stock</th>
+                                    <th>Fecha de Vencimiento</th>
+                                    <th>Acción</th>
+                                </tr>
+                            </thead>
+                        </table>
                         </div>
                     </div>
                 </div>
@@ -66,68 +71,55 @@ $inventory->checkLogin();
                     <form method="post" id="productForm">
                         <input type="hidden" name="pid" id="pid" />
                         <input type="hidden" name="btn_action" id="btn_action" />
-                        <div class="form-group">
-                            <label>Seleccionar Categoría</label>
+                        <!-- Campos ocultos con valores por defecto -->
+                        <input type="hidden" name="base_price" id="base_price" value="0" />
+                        <input type="hidden" name="tax" id="tax" value="0" />
+                        <input type="hidden" name="supplierid" id="supplierid" value="1" />
+                        <div class="form-group mb-3">
+                            <label>Marca</label>
+                            <select name="brandid" id="brandid" class="form-select rounded-0" required>
+                                <option value="">Seleccionar Marca</option>
+                                <?php echo $inventory->brandDropdownList(); ?>
+                            </select>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label>Categoría</label>
                             <select name="categoryid" id="categoryid" class="form-select rounded-0" required>
                                 <option value="">Seleccionar Categoría</option>
                                 <?php echo $inventory->categoryDropdownList(); ?>
                             </select>
                         </div>
-                        <div class="form-group">
-                            <label>Selecciona Marca</label>
-                            <select name="brandid" id="brandid" class="form-select rounded-0" required>
-                                <option value="">Selecciona Marca</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>Nombre de Producto</label>
+                        <div class="form-group mb-3">
+                            <label>Nombre</label>
                             <input type="text" name="pname" id="pname" class="form-control rounded-0" required />
                         </div>
-                        <div class="form-group">
-                            <label>Modelo de Producto</label>
+                        <div class="form-group mb-3">
+                            <label>Lote</label>
                             <input type="text" name="pmodel" id="pmodel" class="form-control rounded-0" required />
                         </div>
-                        <div class="form-group">
-                            <label>Descripción de Producto</label>
+                        <div class="form-group mb-3">
+                            <label>Fórmula</label>
                             <textarea name="description" id="description" class="form-control rounded-0" rows="5" required></textarea>
                         </div>
-                        <div class="form-group">
-                            <label>Cantidad de Producto</label>
+                        <div class="form-group mb-3">
+                            <label>Cantidad</label>
                             <div class="input-group">
                                 <input type="text" name="quantity" id="quantity" class="form-control rounded-0" required pattern="[+-]?([0-9]*[.])?[0-9]+" />
                                 <select name="unit" class="form-select rounded-0" id="unit" required>
-                                    <option value="">Selecciona Unidad</option>
-                                    <option value="Bags">Bolsos</option>
-                                    <option value="Bottles">Botellas</option>
-                                    <option value="Box">Cajas</option>
-                                    <option value="Dozens">Docenas</option>
-                                    <option value="Feet">Pies</option>
-                                    <option value="Gallon">Galones</option>
-                                    <option value="Grams">Gramos</option>
-                                    <option value="Inch">Pulgadas</option>
+                                    <option value="">Seleccionar Unidad</option>
+                                    <option value="Bolsos">Bolsos</option>
+                                    <option value="Botellas">Botellas</option>
+                                    <option value="Cajas">Cajas</option>
+                                    <option value="Unidades">Unidades</option>
                                     <option value="Kg">Kilos</option>
-                                    <option value="Liters">Litros</option>
-                                    <option value="Meter">Metros</option>
-                                    <option value="Nos">Números</option>
-                                    <option value="Packet">Paquete</option>
-                                    <option value="Rolls">Rollos</option>
+                                    <option value="Litros">Litros</option>
+                                    <option value="Gramos">Gramos</option>
                                 </select>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label>Precio base del producto</label>
-                            <input type="text" name="base_price" id="base_price" class="form-control rounded-0" required pattern="[+-]?([0-9]*[.])?[0-9]+" />
-                        </div>
-                        <div class="form-group">
-                            <label>Impuesto sobre productos (%)</label>
-                            <input type="text" name="tax" id="tax" class="form-control rounded-0" required pattern="[+-]?([0-9]*[.])?[0-9]+" />
-                        </div>
-                        <div class="form-group">
-                            <label>Proveedor</label>
-                            <select name="supplierid" id="supplierid" class="form-select rounded-0" required>
-                                <option value="">Selecciona Proveedor</option>
-                                <?php echo $inventory->supplierDropdownList(); ?>
-                            </select>
+                        <div class="form-group mb-3">
+                            <label>Fecha de Vencimiento</label>
+                            <input type="date" name="date" id="date" class="form-control rounded-0" required />
                         </div>
                     </form>
                 </div>
@@ -141,21 +133,18 @@ $inventory->checkLogin();
 
     <div id="productViewModal" class="modal fade">
         <div class="modal-dialog modal-dialog-centered">
-            <form method="post" id="product_form">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title"><i class="fa fa-th-list"></i> Información de Producto</h4>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                    </div>
-                    <div class="modal-body">
-                        <Div id="productDetails"></Div>
-                    </div>
-                    <div class="modal-footer">
-
-                        <button type="button" class="btn btn-default" data-bs-dismiss="modal">Cerrar</button>
-                    </div>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title"><i class="fa fa-th-list"></i> Información de Producto</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
-            </form>
+                <div class="modal-body">
+                    <div id="productDetails"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default border rounded-0 btn-sm" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
         </div>
     </div>
 

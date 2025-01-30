@@ -37,7 +37,7 @@ if (!empty($_POST['email']) && !empty($_POST['pwd'])) {
 </style>
 <?php include('inc/container.php'); ?>
 
-<h1 class="text-center my-4 py-3 text-light" id="title">Sistema Básico de Inventario - PHP</h1>
+<h1 class="text-center my-4 py-3 text-light" id="title">Inventario de Reactivos</h1>
 <div class="col-lg-4 col-md-5 col-sm-10 col-xs-12">
 	<div class="card rounded-0 shadow">
 		<div class="card-header">
