@@ -1,8 +1,21 @@
+/* Variables globales */
+:root {
+    --primary-color: #075985;
+    --secondary-color: #0284c7;
+    --success-color: #28a745;
+    --warning-color: #ffc107;
+    --danger-color: #dc3545;
+    --light-color: #f8f9fa;
+    --dark-color: #343a40;
+}
+
 /* Estilos base */
 html,
 body {
     height: 100% !important;
     width: 100% !important;
+    font-size: 16px;
+    line-height: 1.5;
 }
 
 /* Estilos del footer */
@@ -19,6 +32,7 @@ body {
 .navbar-nav .nav-link {
     color: black !important;
     font-weight: bold !important;
+    padding: 0.5rem 1rem !important;
 }
 
 /* Estilo para el menú activo */
@@ -82,38 +96,11 @@ body {
     border: 1px solid rgba(255,255,255,0.2);
 }
 
-/* Estados de Stock */
-.stock-status-container {
-    text-align: center;
-}
-
-.stock-status {
-    padding: 6px 12px;
-    border-radius: 4px;
-    display: inline-block;
-    font-weight: 500;
-    font-size: 0.9em;
-}
-
-/* Colores para badges */
-.badge.bg-success {
-    background-color: #28a745 !important;
-    color: white;
-}
-
-.badge.bg-warning {
-    background-color: #ffc107 !important;
-    color: #000;
-}
-
-.badge.bg-orange {
-    background-color: #fd7e14 !important;
-    color: white;
-}
-
-.badge.bg-danger {
-    background-color: #dc3545 !important;
-    color: white;
+/* Mejoras responsivas para tablas */
+.table-responsive-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 /* Estilos para la tabla */
@@ -151,4 +138,167 @@ body {
 .form-control,
 .form-select {
     border-radius: 0;
+}
+
+/* Estilos responsivos para móviles */
+@media screen and (max-width: 767px) {
+    /* Ajustes de fuente */
+    body {
+        font-size: 14px;
+    }
+
+    /* Ajustes de tabla */
+    .table-responsive-wrapper {
+        margin-left: -15px;
+        margin-right: -15px;
+        padding: 0 15px;
+    }
+
+    .table td, .table th {
+        padding: 0.5rem;
+    }
+
+    /* Ajustes de botones */
+    .btn-group-sm > .btn {
+        padding: .5rem .75rem;
+        font-size: 1rem;
+    }
+
+    /* Ajustes de modales */
+    .modal-dialog {
+        margin: 0.5rem;
+    }
+
+    .modal-content {
+        border-radius: 0;
+    }
+
+    .modal-body {
+        padding: 1rem;
+    }
+
+    .modal-footer {
+        flex-direction: column;
+        padding: 0.75rem;
+    }
+
+    .modal-footer .btn {
+        width: 100%;
+        margin: 0.25rem 0;
+    }
+
+    /* Ajustes de navegación */
+    .navbar-nav {
+        padding: 0.5rem 0;
+    }
+
+    .navbar-nav .nav-item {
+        margin-bottom: 0.5rem;
+    }
+
+    .navbar-brand {
+        font-size: 1.2rem;
+    }
+
+    /* Ajustes de formularios */
+    .form-control, .form-select {
+        height: 45px;
+        font-size: 16px;
+    }
+
+    .form-group {
+        margin-bottom: 1rem;
+    }
+
+    /* Ajustes de date container */
+    .date-container {
+        min-width: 100px;
+        font-size: 0.85em;
+    }
+
+    /* Ajustes de DataTables */
+    .dataTables_wrapper .dataTables_length,
+    .dataTables_wrapper .dataTables_filter,
+    .dataTables_wrapper .dataTables_info,
+    .dataTables_wrapper .dataTables_paginate {
+        text-align: left;
+        float: none;
+        margin-bottom: 0.5rem;
+    }
+
+    .dataTables_wrapper .dataTables_paginate .paginate_button {
+        padding: 0.5rem 0.75rem;
+    }
+}
+
+/* Estilos responsivos para tablets */
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+    .table td, .table th {
+        padding: 0.75rem;
+    }
+
+    .btn-group-sm > .btn {
+        padding: .375rem .6rem;
+    }
+}
+
+/* Estilos para los estados de stock */
+.badge.bg-success {
+    background-color: #28a745 !important;
+    color: white;
+}
+
+.badge.bg-warning {
+    background-color: #ffc107 !important;
+    color: #000;
+}
+
+.badge.bg-orange {
+    background-color: #fd7e14 !important;
+    color: white;
+}
+
+.badge.bg-danger {
+    background-color: #dc3545 !important;
+    color: white;
+}
+
+/* Ajustes para mejorar la accesibilidad táctil */
+@media (pointer: coarse) {
+    .btn, 
+    .nav-link,
+    .form-control,
+    .form-select {
+        min-height: 44px;
+    }
+
+    .btn-group-sm > .btn {
+        min-height: 38px;
+    }
+}
+
+/* Mejoras en la visualización de DataTables */
+.dataTables_wrapper .dataTables_filter input {
+    min-height: 35px;
+    margin-left: 0.5rem;
+}
+
+.dataTables_wrapper .dataTables_length select {
+    min-height: 35px;
+    padding: 0 1rem;
+}
+
+/* Estilos para los filtros */
+.filter-section {
+    margin-bottom: 1.5rem;
+}
+
+@media screen and (max-width: 767px) {
+    .filter-section .form-select {
+        margin-bottom: 0.5rem;
+    }
+
+    .filter-section .btn {
+        width: 100%;
+    }
 }
