@@ -72,7 +72,7 @@ $inventory->checkLogin();
                         <div class="col-sm-12 table-responsive">
                         <table id="inventoryDetails" class="table table-bordered table-striped">
                             <thead>
-                                <tr>
+                                <tr> 
                                     <th>ID</th>
                                     <th>Producto</th>
                                     <th>Lote</th>

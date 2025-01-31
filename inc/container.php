@@ -18,7 +18,7 @@
                 <a class="navbar-brand">ALMACÉN DE REACTIVOS</a>
                 <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain">
                     <span class="navbar-toggler-icon"></span>
-                </button>
+                </button> 
             </div>
         </div>
     </nav>
