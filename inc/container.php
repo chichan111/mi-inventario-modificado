@@ -16,9 +16,7 @@
         <div class="container">
             <div class="navbar-header d-flex justify-content-between w-100">
                 <a class="navbar-brand">ALMACÉN DE REACTIVOS</a>
-                <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain">
-                    <span class="navbar-toggler-icon"></span>
-                </button> 
+                
             </div>
         </div>
     </nav>
